@@ -2,11 +2,12 @@
 
 /* Global css mentioned here. */
 body {
-    font-family: "TASA Orbiter", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    /* background-color: var(--color-secondary); */
-    background-color: white;
+  font-family: "TASA Orbiter", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  /* background-color: var(--color-secondary); */
+  /* background-color: white; */
+  color: white;
 }
 
 /* // <weight>: Use a value from 400 to 800
@@ -28,7 +29,6 @@ body {
   font-style: normal;
 }
 
-
 /* // <weight>: Use a value from 400 to 900 */
 /* // <uniquifier>: Use a unique and descriptive class name */
 .font-orbitron {
@@ -37,10 +37,16 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+.font-orbitron-bold {
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
 
 .ubuntu-light {
   font-family: "Ubuntu", sans-serif;
-  font-weight: 300; 
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -86,13 +92,18 @@ body {
   font-style: italic;
 }
 
-
 /* css variables :  */
 :root {
-    --color-primary: #030611;
-    --color-secondary: #050b16;
-    --color-accent: #FBBF24;
-    --color-button-background : #6b26d9;
-    --color-background: #F9FAFB;
-    --color-text: #111827;
+  --color-primary: #030611;
+  --color-secondary: #050b16;
+  --color-tertiary: linear-gradient(
+    180deg,
+    #2a235f 0%,
+    #1a1442 45%,
+    #100b2a 100%
+  );
+  --color-accent: #fbbf24;
+  --color-button-background: #6b26d9;
+  --color-background: #f9fafb;
+  --color-text: #111827;
 }
