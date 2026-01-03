@@ -1,16 +1,24 @@
 import React, { useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Home from './pages/home/Home'
 import Navbar from './component/header/Navbar'
 import Profile from './pages/user/Profile'
 function All_router() {
-    const [user, setUser] = useState('My portfolio request')
+    const location = useLocation();
+     // routes where navbar should be hidden
+  const hideNavbarRoutes = ["/portfolio-requesting"];
+
+  const shouldHideNavbar = hideNavbarRoutes.some((path) =>
+    location.pathname.startsWith(path)
+  );
     return (
         <>
-            <Navbar />
+            {shouldHideNavbar && <Navbar />}
             <Routes>
-                <Route path="/" element={<Navigate to={`/portfolio/${user}`} />} />
-                <Route path='/portfolio/:name' element={<Home />} />
+                <Route path="/" element={<Navigate to={`/portfolio-requesting`} />} />
+                <Route path='/portfolio-requesting' element={<Home />} />
+
                 <Route path='/profile/:username' element={<Profile />} />
             </Routes>
         </>
