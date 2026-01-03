@@ -1,84 +1,290 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-function Home() {
-    const { name } = useParams();
+import React, { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import ImgZooming from "../../component/Image_comp/ImgZooming";
+import Contact_me from "./Contact_me";
 
-    const WallpaperDesign = () => {
-        return (
-            <div className='flex items-center justify-center'>
-                <h1 className='text-4xl font-bold'>Wallpaper Design</h1>
-            </div>
-        );
-    }
+/* ------------------ Animations ------------------ */
+const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0 },
+};
+
+const scrollAnimation = {
+    x: "-50%",
+    transition: {
+        repeat: Infinity,
+        repeatType: "loop",
+        duration: 30,
+        ease: "linear",
+    },
+};
+
+/* ------------------ Data ------------------ */
+const portfolios = [
+    {
+        title: "Personal Brand Portfolio",
+        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+    },
+    {
+        title: "Creative Developer Site",
+        img: "https://images.unsplash.com/photo-1509395176047-4a66953fd231",
+    },
+    {
+        title: "Startup Landing Page",
+        img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    },
+    {
+        title: "Designer Showcase",
+        img: "https://images.unsplash.com/photo-1559028012-481c04fa702d",
+    },
+];
+
+/* ------------------ Carousel ------------------ */
+function PortfolioCarousel() {
+    const controls = useAnimation();
+
+    useEffect(() => {
+        controls.start(scrollAnimation);
+    }, [controls]);
 
     return (
-        <>
-            <div className='flex items-center text-center bg-(--color-secondary) flex-col justify-between px-6 py-4'>
-                <div>
-                    {/* main div for the outer div */}
-                    <div className='flex mt-10 flex-col md:flex-col justify-between items-center gap-6 md:gap-6 '>
-                        <div >
-                            <span className='bg-[#0e0a26] text-sm md:text-lg border border-(--color-button-background) md:px-9 px-5 py-2 p-1 rounded-full text-(--color-button-background) font-bold shadow-2'> <span>
-                            </span> Now accepting new client's for 2026</span>
-                        </div>
-                        <div className='flex flex-col gap-5'>
-                            <span
-                                className='font-orbitron-bold md:text-7xl text-4xl'
-                            >
-                                We build <span className='text-(--color-button-background)'>digital legacies</span>.
-                            </span>
-                            <span
-                                className='text-md  md:text-2xl text-(--color-text-gray)'
-                            >
-                                Transform your professional journey <br className='block md:hidden' />  into a stunning digital portfolio. <br />
-                                We design custom web experiences <br className='block md:hidden' /> that tell your story.
-                            </span>
-                        </div>
-                    </div>
-                    <div className='md:flex flex flex-col md:flex-row  mt-3 md:mt-10 md:text-2xl md:justify-center gap-5 md:gap-10'>
-                        <div className=''>
-                            <button className='hover:cursor-pointer bg-(--color-button-background) shadow-2 shadow-(--color-button-background) px-10 md:px-14 py-4 rounded-lg font-bold md:py-5'>Start Your Request</button>
-                        </div>
-                        <div className=''>
-                            <button className='bg-[#0f172a] hover:cursor-pointer font-bold border-[#555663] border  px-13 py-4 md:px-14 md:py-5 rounded-lg'>View Our Work</button>
-                        </div>
-                    </div>
-                    <div className='hidden md:flex  mt-10 text-sm md:text-xl md:font-thin   items-center md:gap-20 justify-center text-(--color-text-gray) '>
-                        <div className='flex items-center gap-2'>
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" className='h-4 w-4 md:h-6 md:w-6' viewBox="0 -960 960 960" fill="currentColor"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 32.5-156t88-127Q256-817 330-848.5T488-880q80 0 151 27.5t124.5 76q53.5 48.5 85 115T880-518q0 115-70 176.5T640-280h-74q-9 0-12.5 5t-3.5 11q0 12 15 34.5t15 51.5q0 50-27.5 74T480-80Zm0-400Zm-220 40q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm120-160q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm200 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm120 160q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17ZM480-160q9 0 14.5-5t5.5-13q0-14-15-33t-15-57q0-42 29-67t71-25h70q66 0 113-38.5T800-518q0-121-92.5-201.5T488-800q-136 0-232 93t-96 227q0 133 93.5 226.5T480-160Z" /></svg>
-                            </span>
-                            <span>
-                                Besspoke Design
-                            </span>
-                        </div>
-                        <div className='flex items-center gap-2'>
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" className='h-4 w-4 md:h-6 md:w-6' viewBox="0 -960 960 960"  fill="currentColor"><path d="M480-540ZM80-160v-80h400v80H80Zm120-120q-33 0-56.5-23.5T120-360v-360q0-33 23.5-56.5T200-800h560q33 0 56.5 23.5T840-720H200v360h280v80H200Zm600 40v-320H640v320h160Zm-180 80q-25 0-42.5-17.5T560-220v-360q0-25 17.5-42.5T620-640h200q25 0 42.5 17.5T880-580v360q0 25-17.5 42.5T820-160H620Zm100-300q13 0 21.5-9t8.5-21q0-13-8.5-21.5T720-520q-12 0-21 8.5t-9 21.5q0 12 9 21t21 9Zm0 60Z" /></svg>
-                            </span>
-                            <span>
-                                Responsive
-                            </span>
-                        </div>
-                        <div className='flex items-center gap-2'>
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" className='h-5 w-5 md:h-8 md:w-8'  viewBox="0 -960 960 960"  fill="currentColor"><path d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z"/></svg>
-                            </span>
-                            <span>
-                                Clean code
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <WallpaperDesign />
-                </div>
+        <section className="px-6 py-28 bg-(--color-secondary)">
+            {/* Heading */}
+            <div className="max-w-6xl mx-auto text-center mb-16">
+                <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                    Crafted for Excellence
+                </h2>
+                <p className="text-(--color-text-gray) max-w-2xl mx-auto">
+                    Explore a selection of portfolios and websites we’ve designed
+                    for our creative partners.
+                </p>
             </div>
-            <div>
-                {/* Add your portfolio content here */}
+
+            {/* Carousel */}
+            <div
+                className="overflow-hidden touch-pan-y"
+                onMouseEnter={() => controls.stop()}
+                onMouseLeave={() => controls.start(scrollAnimation)}
+                onTouchStart={() => controls.stop()}
+                onTouchEnd={() => {
+                    setTimeout(() => {
+                        controls.start(scrollAnimation);
+                    }, 300);
+                }}
+            >
+                <motion.div className="flex gap-12 w-max" animate={controls}>
+                    {[...portfolios, ...portfolios].map((item, index) => (
+                        <div
+                            key={index}
+                            className="w-[340px] md:w-[420px] bg-[#0e0a26]
+              border border-[#2a2a3d] rounded-3xl overflow-hidden"
+                        >
+                            {/* Image */}
+                            <div className="overflow-hidden">
+                                <motion.img
+                                    src={item.img}
+                                    alt={item.title}
+                                    className="h-72 w-full object-cover"
+                                    whileHover={{ scale: 1.1 }}
+                                    transition={{ duration: 0.4, ease: "easeOut" }}
+                                />
+                            </div>
+
+                            {/* Content */}
+                            <div className="p-7">
+                                <h3 className="font-semibold text-xl mb-1">
+                                    {item.title}
+                                </h3>
+                                <p className="text-sm text-(--color-text-gray)">
+                                    View case study →
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </motion.div>
             </div>
-        </>
-    )
+        </section>
+    );
 }
 
-export default Home
+/* ------------------ Home ------------------ */
+function Home() {
+    return (
+        <div className="bg-(--color-secondary) text-white overflow-hidden">
+
+            {/* HERO */}
+            <section className="px-6 py-24 text-center flex flex-col items-center gap-10">
+                <motion.span
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ duration: 0.6 }}
+                    className="bg-[#0e0a26] border border-(--color-button-background)
+          px-6 py-2 rounded-full text-sm md:text-base font-semibold
+          text-(--color-button-background)"
+                >
+                    Now accepting new clients for 2026
+                </motion.span>
+
+                <motion.h1
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ delay: 0.1, duration: 0.7 }}
+                    className="font-orbitron-bold text-4xl md:text-7xl leading-tight"
+                >
+                    We build{" "}
+                    <span className="text-(--color-button-background)">
+                        digital legacies
+                    </span>
+                </motion.h1>
+
+                <motion.p
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ delay: 0.2, duration: 0.7 }}
+                    className="text-(--color-text-gray) max-w-2xl text-base md:text-2xl"
+                >
+                    Custom web experiences that turn your journey
+                    into a timeless digital portfolio.
+                </motion.p>
+            </section>
+
+            {/* FEATURES */}
+            <section className="px-6 py-16 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+                {["Bespoke Design", "Fully Responsive", "Clean Code"].map(
+                    (item, index) => (
+                        <motion.div
+                            key={item}
+                            variants={fadeUp}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            className="border border-[#2a2a3d] rounded-2xl p-8 bg-[#0e0a26]"
+                        >
+                            <h3 className="text-xl font-bold mb-3">{item}</h3>
+                            <p className="text-(--color-text-gray)">
+                                Crafted with intention, clarity, and long-term scalability.
+                            </p>
+                        </motion.div>
+                    )
+                )}
+            </section>
+
+            {/* SHOWCASE */}
+            <section className="px-6 py-20 max-w-7xl mx-auto flex flex-col gap-24">
+                <motion.div
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="grid md:grid-cols-2 gap-12 items-center"
+                >
+                    <ImgZooming img_src="https://img.freepik.com/free-photo/rear-view-programmer-working-all-night-long_1098-18697.jpg" />
+                    <div className="space-y-6">
+                        <h2 className="text-3xl md:text-5xl font-bold">
+                            Design meets purpose
+                        </h2>
+                        <p className="text-(--color-text-gray)">
+                            Every layout, interaction, and animation is built
+                            to serve a story — not distract from it.
+                        </p>
+                    </div>
+                </motion.div>
+            </section>
+            <section className="px-6 py-20 max-w-7xl mx-auto flex flex-col gap-24">
+                <motion.div
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 md:grid-cols-2 items-center gap-12"
+                >
+                    {/* Image */}
+                    <div className="hidden md:block space-y-6 md:col-start-1">
+                        <h2 className="text-3xl md:text-5xl font-bold">
+                            Design your portfolio
+                        </h2>
+                        <p className="text-(--color-text-gray)">
+                            Add your works , projects and skills to showcase your expertise.
+                            Our services help you create a stunning portfolio that highlights your strengths and attracts potential clients or employers.
+                        </p>
+                    </div>
+
+                    <div className="md:col-start-2">
+                        <ImgZooming img_src="https://img.freepik.com/free-photo/male-developer-entering-binary-data-terminal-panel_482257-75385.jpg" />
+                    </div>
+
+                    {/* Text */}
+                    <div className="md:hidden space-y-6 md:col-start-1">
+                        <h2 className="text-3xl md:text-5xl font-bold">
+                            Design your portfolio
+                        </h2>
+                        <p className="text-(--color-text-gray)">
+                            Add your works , projects and skills to showcase your expertise.
+                            Our services help you create a stunning portfolio that highlights your strengths and attracts potential clients or employers.
+                        </p>
+                    </div>
+                </motion.div>
+            </section>
+            {/* CAROUSEL */}
+            <PortfolioCarousel />
+            <section className="px-6 py-20 max-w-7xl mx-auto flex flex-col gap-24">
+                <Contact_me />
+            </section>
+            <footer className="bg-[#0b0820] border-t border-[#1f1f33] px-4 sm:px-6 py-16">
+                <div className="max-w-6xl mx-auto flex flex-col gap-10">
+
+                    {/* TOP CTA */}
+                    <div className="text-center space-y-4">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+                            Get in Touch
+                        </h2>
+                        <p className="text-(--color-text-gray) text-base sm:text-lg max-w-xl mx-auto">
+                            Have questions or ready to start your project?
+                            Let’s build something meaningful together.
+                        </p>
+                    </div>
+
+                    {/* ACTION */}
+                    {/* <div className="flex justify-center">
+                        <a
+                            href="/contact"
+                            className="bg-(--color-button-background)
+        px-8 sm:px-10 py-3.5 sm:py-4
+        rounded-lg font-semibold text-base sm:text-lg
+        hover:scale-[1.03] transition-transform"
+                        >
+                            Request Portfolio Design
+                        </a>
+                    </div> */}
+
+                    {/* DIVIDER */}
+                    <div className="border-t border-[#1f1f33]" />
+
+                    {/* BOTTOM BAR */}
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-0 items-center justify-between text-sm text-(--color-text-gray)">
+                        <span>
+                            © {new Date().getFullYear()} DevFolio.io , All rights reserved.
+                        </span>
+
+                        <span className="text-xs sm:text-sm">
+                            Crafted with care · Design-first mindset
+                        </span>
+                    </div>
+
+                </div>
+            </footer>
+
+        </div>
+    );
+}
+
+export default Home;
+
+
+
+
+
