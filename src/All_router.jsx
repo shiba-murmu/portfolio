@@ -4,7 +4,7 @@ import Home from './pages/home/Home'
 import Navbar from './component/header/Navbar'
 import Profile from './pages/user/Profile'
 function All_router() {
-    const [user, setUser] = useState('original')
+    const [user, setUser] = useState('My portfolio request')
     return (
         <>
             <Navbar />
