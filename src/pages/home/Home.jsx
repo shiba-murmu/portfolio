@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import ImgZooming from "../../component/Image_comp/ImgZooming";
 import Contact_me from "./Contact_me";
@@ -46,6 +47,7 @@ function PortfolioCarousel() {
     useEffect(() => {
         controls.start(scrollAnimation);
     }, [controls]);
+    const [name , setName] = useState('shibamurmu')
 
     return (
         <section className="px-6 py-28 bg-(--color-secondary)">
@@ -76,8 +78,8 @@ function PortfolioCarousel() {
                     {[...portfolios, ...portfolios].map((item, index) => (
                         <div
                             key={index}
-                            className="w-[340px] md:w-[420px] bg-[#0e0a26]
-              border border-[#2a2a3d] rounded-3xl overflow-hidden"
+                            className="w-85 md:w-105 bg-[#0e0a26]
+              border border-[#2a2a3d] rounded-2xl overflow-hidden"
                         >
                             {/* Image */}
                             <div className="overflow-hidden">
@@ -95,9 +97,11 @@ function PortfolioCarousel() {
                                 <h3 className="font-semibold text-xl mb-1">
                                     {item.title}
                                 </h3>
-                                <p className="text-sm text-(--color-text-gray)">
-                                    View case study →
-                                </p>
+                                <Link to={`/profile/${name}`} className="inline-block mt-4 text-(--color-button-background) font-medium hover:underline">
+                                    <p className="text-sm text-(--color-text-gray)">
+                                        View case study →
+                                    </p>
+                                </Link>
                             </div>
                         </div>
                     ))}
