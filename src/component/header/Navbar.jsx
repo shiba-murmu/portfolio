@@ -15,7 +15,7 @@ function Navbar() {
 
 
                 </span>
-                <span className='text-2xl '>{websiteHeading}</span>
+                <span className='text-2xl'>{websiteHeading}</span>
             </div>
         </>
     )
