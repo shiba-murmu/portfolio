@@ -96,6 +96,7 @@ body {
 :root {
   --color-primary: #030611;
   --color-secondary: #050b16;
+  --color-text-gray: #94a3a8;
   --color-tertiary: linear-gradient(
     180deg,
     #2a235f 0%,
